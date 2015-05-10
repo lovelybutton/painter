@@ -1,0 +1,99 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+body {line-height: 1;font-family: Helvetica, Arial, sans-serif;font-size:14px;text-align: center;}
+ol, ul {list-style: none;}
+blockquote, q {quotes: none;}
+blockquote:before, blockquote:after,q:before, q:after {content: '';content: none;}
+table {border-collapse: collapse;border-spacing: 0;}
+*,:before,:after{-moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box;}
+h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, ul, li {margin:1em 0;}
+/*body {cursor: url(http://wiki.ooo4kids.org/images/b/b3/Cursor-Hand.svg), auto;}*/
+
+/* Content */
+h1 {font-size:36px;text-align: center;}
+#canvas {
+	margin:0 auto;
+	width:401px;
+	overflow:hidden;
+	border-right:3px solid #ccc;
+	border-bottom:3px solid #ccc;
+}
+.pixel {
+	width:10%;
+	height:40px;
+	float:left;
+	border:3px solid #ccc;
+	border-right:0;
+	border-bottom:0;
+	cursor:pointer;
+}
+
+/* Palette */
+#palette {
+	position: fixed;
+	left:20px;
+	top:20px;
+	width:136px;
+	padding:20px 5px 10px;
+	border:1px solid black;
+	border-top-width:6px;
+	border-radius:20px;
+}
+#palette > .handle {
+	position: absolute;
+	width:20px;
+	height:100px;
+	right:-21px;
+	top:20px;
+	background-color: #ccc;
+	border-radius:0 3px 3px 0;
+	border:1px solid black;
+	border-left:0;
+	cursor:move;
+}
+.swatch { 
+	width:50px;
+	height:50px;
+	float:left;
+	margin:0 5px 10px;
+	border:1px solid #fff;
+	border-radius:6px;
+	opacity:0.8;
+	cursor:pointer;
+}
+.swatch:hover,
+.swatch.active {
+	opacity:1;
+	border-color:black;
+}
+/* reset border colors for extreme spectrum colors */
+.swatch[data-color="white"] {border-color:#bbb;}
+.swatch[data-color="black"].active {border-color:gray;}
+
+/* set display colors for each swatch */
+[data-color="red"] {background-color: red;}
+[data-color="orange"] {background-color: orange;}
+[data-color="aquamarine"] {background-color: aquamarine;}
+[data-color="green"] {background-color: green;}
+[data-color="blue"] {background-color: blue;}
+[data-color="purple"] {background-color: purple;}
+[data-color="black"] {background-color: black;}
+[data-color="gray"] {background-color: gray;}
+[data-color="white"] {background-color: white;}
+[data-color="turquoise"] {background-color: turquoise;}
+[data-color="lightseagreen"] {background-color: lightseagreen;}
+[data-color="tomato"] {background-color: tomato;}
+[data-color="thistle"] {background-color: thistle;}
+[data-color="pink"] {background-color: pink;}
+[data-color="lightcoral"] {background-color: lightcoral;}
+[data-color="royalblue"] {background-color: royalblue;}
+
+/* Painting tools */
+.tool {position: absolute;width:10px;height:10px;background-color: #000;}
+

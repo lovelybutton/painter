@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Paint Inside the Lines</title>
+	<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+	<h1>Paint Inside the lines!</h1>
+
+	Vertical pixel count:
+	<!-- <input type="text" class="pixel-count" data-direction="horizontal" name="pixels-horizontal" value="4"> <br> -->
+
+	Horizontal pixel count:
+	<input type="text" class="pixel-count" data-direction="vertical" name="pixels-vertical" value="4"> <br> <br>
+
+	<div id="canvas">
+		<div class="row">
+			<div class="pixel" data-pixel="1"></div>
+			<div class="pixel" data-pixel="2"></div>
+			<div class="pixel" data-pixel="3"></div>
+			<div class="pixel" data-pixel="4"></div>
+			<div class="pixel" data-pixel="5"></div>
+			<div class="pixel" data-pixel="6"></div>
+			<div class="pixel" data-pixel="7"></div>
+			<div class="pixel" data-pixel="8"></div>
+			<div class="pixel" data-pixel="9"></div>
+			<div class="pixel" data-pixel="10"></div>
+		</div>
+		<div class="row">
+			<div class="pixel" data-pixel="1"></div>
+			<div class="pixel" data-pixel="2"></div>
+			<div class="pixel" data-pixel="3"></div>
+			<div class="pixel" data-pixel="4"></div>
+			<div class="pixel" data-pixel="5"></div>
+			<div class="pixel" data-pixel="6"></div>
+			<div class="pixel" data-pixel="7"></div>
+			<div class="pixel" data-pixel="8"></div>
+			<div class="pixel" data-pixel="9"></div>
+			<div class="pixel" data-pixel="10"></div>
+		</div>
+		<div class="row">
+			<div class="pixel" data-pixel="1"></div>
+			<div class="pixel" data-pixel="2"></div>
+			<div class="pixel" data-pixel="3"></div>
+			<div class="pixel" data-pixel="4"></div>
+			<div class="pixel" data-pixel="5"></div>
+			<div class="pixel" data-pixel="6"></div>
+			<div class="pixel" data-pixel="7"></div>
+			<div class="pixel" data-pixel="8"></div>
+			<div class="pixel" data-pixel="9"></div>
+			<div class="pixel" data-pixel="10"></div>
+		</div>
+		<div class="row">
+			<div class="pixel" data-pixel="1"></div>
+			<div class="pixel" data-pixel="2"></div>
+			<div class="pixel" data-pixel="3"></div>
+			<div class="pixel" data-pixel="4"></div>
+			<div class="pixel" data-pixel="5"></div>
+			<div class="pixel" data-pixel="6"></div>
+			<div class="pixel" data-pixel="7"></div>
+			<div class="pixel" data-pixel="8"></div>
+			<div class="pixel" data-pixel="9"></div>
+			<div class="pixel" data-pixel="10"></div>
+		</div>
+		<div class="row">
+			<div class="pixel" data-pixel="1"></div>
+			<div class="pixel" data-pixel="2"></div>
+			<div class="pixel" data-pixel="3"></div>
+			<div class="pixel" data-pixel="4"></div>
+			<div class="pixel" data-pixel="5"></div>
+			<div class="pixel" data-pixel="6"></div>
+			<div class="pixel" data-pixel="7"></div>
+			<div class="pixel" data-pixel="8"></div>
+			<div class="pixel" data-pixel="9"></div>
+			<div class="pixel" data-pixel="10"></div>
+		</div>
+		<div class="row">
+			<div class="pixel" data-pixel="1"></div>
+			<div class="pixel" data-pixel="2"></div>
+			<div class="pixel" data-pixel="3"></div>
+			<div class="pixel" data-pixel="4"></div>
+			<div class="pixel" data-pixel="5"></div>
+			<div class="pixel" data-pixel="6"></div>
+			<div class="pixel" data-pixel="7"></div>
+			<div class="pixel" data-pixel="8"></div>
+			<div class="pixel" data-pixel="9"></div>
+			<div class="pixel" data-pixel="10"></div>
+		</div>
+		<div class="row">
+			<div class="pixel" data-pixel="1"></div>
+			<div class="pixel" data-pixel="2"></div>
+			<div class="pixel" data-pixel="3"></div>
+			<div class="pixel" data-pixel="4"></div>
+			<div class="pixel" data-pixel="5"></div>
+			<div class="pixel" data-pixel="6"></div>
+			<div class="pixel" data-pixel="7"></div>
+			<div class="pixel" data-pixel="8"></div>
+			<div class="pixel" data-pixel="9"></div>
+			<div class="pixel" data-pixel="10"></div>
+		</div>
+		<div class="row">
+			<div class="pixel" data-pixel="1"></div>
+			<div class="pixel" data-pixel="2"></div>
+			<div class="pixel" data-pixel="3"></div>
+			<div class="pixel" data-pixel="4"></div>
+			<div class="pixel" data-pixel="5"></div>
+			<div class="pixel" data-pixel="6"></div>
+			<div class="pixel" data-pixel="7"></div>
+			<div class="pixel" data-pixel="8"></div>
+			<div class="pixel" data-pixel="9"></div>
+			<div class="pixel" data-pixel="10"></div>
+		</div>	
+		<div class="row">
+			<div class="pixel" data-pixel="1"></div>
+			<div class="pixel" data-pixel="2"></div>
+			<div class="pixel" data-pixel="3"></div>
+			<div class="pixel" data-pixel="4"></div>
+			<div class="pixel" data-pixel="5"></div>
+			<div class="pixel" data-pixel="6"></div>
+			<div class="pixel" data-pixel="7"></div>
+			<div class="pixel" data-pixel="8"></div>
+			<div class="pixel" data-pixel="9"></div>
+			<div class="pixel" data-pixel="10"></div>
+		</div>	
+		<div class="row">
+			<div class="pixel" data-pixel="1"></div>
+			<div class="pixel" data-pixel="2"></div>
+			<div class="pixel" data-pixel="3"></div>
+			<div class="pixel" data-pixel="4"></div>
+			<div class="pixel" data-pixel="5"></div>
+			<div class="pixel" data-pixel="6"></div>
+			<div class="pixel" data-pixel="7"></div>
+			<div class="pixel" data-pixel="8"></div>
+			<div class="pixel" data-pixel="9"></div>
+			<div class="pixel" data-pixel="10"></div>
+		</div>	
+	</div>
+	<div id="palette">
+		<div class="handle"></div>
+		<div class="swatch active" title="red" data-color="red"></div>
+		<div class="swatch" title="orange" data-color="orange"></div>
+		<div class="swatch" title="tomato" data-color="tomato"></div>
+		<div class="swatch" title="thistle" data-color="thistle"></div>
+		<div class="swatch" title="pink" data-color="pink"></div>
+		<div class="swatch" title="lightcoral" data-color="lightcoral"></div>
+		<div class="swatch" title="aquamarine" data-color="aquamarine"></div>
+		<div class="swatch" title="green" data-color="green"></div>
+		<div class="swatch" title="turquoise" data-color="turquoise"></div>
+		<div class="swatch" title="lightseagreen" data-color="lightseagreen"></div>
+		<div class="swatch" title="blue" data-color="blue"></div>
+		<div class="swatch" title="royalblue" data-color="royalblue"></div>
+		<div class="swatch" title="purple" data-color="purple"></div>
+		<div class="swatch" title="black" data-color="black"></div>
+		<div class="swatch" title="gray" data-color="gray"></div>
+		<div class="swatch" title="white" data-color="white"></div>
+	</div>
+
+	<!-- <div id="tool" data-selected-tool="paintbrush">paintbrush</div> -->
+	<script src="assets/script/script.js"></script>
+</body>
+</html>
