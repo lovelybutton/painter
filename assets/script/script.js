@@ -1,106 +1,148 @@
 (function(){
 
-	// cache DOM elements
-	var dom = {
+	/* ---------------------------- 
+	 * DOM ELEMENTS & STATE
+	 * ---------------------------- */
+	 var dom = {
 		tool: document.querySelector('#tool'),
-		swatches: document.querySelectorAll('.swatch'),
-		pixels: document.querySelectorAll('.pixel'),
 		palette: document.querySelector('#palette'),
 		canvas: document.querySelector('#canvas'),
+		swatches: document.querySelectorAll('.swatch'),
+		pixels: document.querySelectorAll('.pixel'),
 		pixelsVertical: document.querySelector('.pixel-count')
 	};
-
-	// cache state
 	var state = {
 		currentColor: 'red',
 		currentTool: 'paintbrush',
 		isPainting: false,
-		pixels: {
-			vertical: 4,
-			horizontal: 4,
-			size:25 // percent
-		}
+		paletteIsMoving: false
 	};
 
-	// util functions
-	function paintPixel(pixel, color) {
-		pixel.setAttribute('data-color', color);
-	}
+	/* -------------- 
+	 * PALETTE
+	 * -------------- */
+	var palette = {
+		move: function(){
 
-	function renderCanvas(pixels) {
-		console.log(pixels);
-
-	}
-
-	// event handlers for palette and canvas
-	function onColorSelect(e) {
-		var color;
-		var targetEl = e.target;
-
-		if (targetEl.classList.contains('swatch')){
-			color = targetEl.getAttribute('data-color');
-
-			// set global current color
-			state.currentColor = color;
+		},
+		selectColor: function(element){
+			var color;
+			color = element.getAttribute('data-color');
 
 			// remove active class from other swatches
+			// todo - find more efficient way to remove previous swatche active class
 			[].forEach.call(dom.swatches, function(swatch) {
 				swatch.classList.remove('active');
 			});
 			
-			// highlight active color
-			targetEl.classList.add('active');
+			// set current color globally and highlight in the palette
+			state.currentColor = color;
+			element.classList.add('active');
+		},
+
+		// event handler for mousedown anywhere on the palette
+		onPaletteMouseDown: function (e) {
+			var targetEl = e.target;
+
+			// use event delegation to determine what to do 
+			if (targetEl.classList.contains('swatch')){
+				// user has clicked on a swatch
+				palette.selectColor(targetEl);
+
+			} else if (targetEl.classList.contains('handle')) {
+				// user has clicked on the handle and wants to move the palette
+				console.log('moving palette');
+
+			}
 		}
-	}
+	};
 
-	function onPixelPaint(e) {
-		var action = e.type.toLowerCase().slice(5);
-		var targetEl = e.target;
+	/* -------------- 
+	 * CANVAS
+	 * -------------- */
+	var canvas = {
 
-		if (action === 'down') {
-			state.isPainting = true;
-		} else {
-			state.isPainting = false;
+		// canvas props
+		pixels: {
+			vertical: 4,
+			horizontal: 4,
+			size:25 // percent
+		},
+
+		// canvas methods
+		render: function(pixels) {
+			console.log(pixels);
+		},
+		onUpdatePixelCount: function(e) {
+			var targetEl = e.target;
+
+			var direction = targetEl.getAttribute('data-direction');
+			var amount = parseInt(targetEl.value, 10);
+
+			if (typeof amount === 'number'){
+				canvas.pixels[direction] = amount;
+				canvas.render(canvas.pixels);
+			}
+		}
+	};
+
+	/* --------------------- 
+	 * PAINTING METHODS
+	 * --------------------- */
+	var painter = {
+
+		// general function to paint a single element
+		paint: function (element, color) {
+			element.setAttribute('data-color', color);
+		},
+	
+		// event handler for when painting on the canvas
+		onPaint: function (e) {
+			// Determine if current event is mousedown or mouseup
+			var action = e.type.toLowerCase().slice(5);
+			var targetEl = e.target;
+
+			// set document state based on current mouse event. 
+			if (action === 'down') {
+				// mousedown: set isPainting to true and allow users to paint a range of pixels in one stroke
+				state.isPainting = true;
+			} else {
+				// mouseup: turn off isPainting mode
+				state.isPainting = false;
+			}
+
+			// event delegation - determine we've clicked on a pixel
+			if (targetEl.classList.contains('pixel')){
+				painter.paint(targetEl, state.currentColor);
+			}
+		},
+
+		// Event handler to support painting a range of pixels in one stroke
+		// works only if global state isPainting is true
+		onPaintHover: function (e){
+			var targetEl = e.target;
+
+			if (targetEl.classList.contains('pixel') && state.isPainting){
+				painter.paint(targetEl, state.currentColor);			
+			}
 		}
 
-		if (targetEl.classList.contains('pixel')){
-			paintPixel(targetEl, state.currentColor);
-		}
-	}
+	};
 
-	function onPixelHover(e){
-		var targetEl = e.target;
+	/* --------------------- 
+	 * ATTACH EVENT HANDLERS
+	 * --------------------- */
 
-		if (targetEl.classList.contains('pixel') && state.isPainting){
-			paintPixel(targetEl, state.currentColor);			
-		}
-	}
+	// Palette handlers
+	dom.palette.addEventListener('mousedown', palette.onPaletteMouseDown, false);
 
-	function onUpdatePixelCount(e) {
-		var targetEl = e.target;
+	// Canvas painting handlers
+	dom.canvas.addEventListener('mousedown', painter.onPaint, false);
+	dom.canvas.addEventListener('mouseup', painter.onPaint, false);
+	dom.canvas.addEventListener('mouseover', painter.onPaintHover, false);
 
-		var direction = targetEl.getAttribute('data-direction');
-		var amount = parseInt(targetEl.value, 10);
-
-		if (typeof amount === 'number'){
-			state.pixels[direction] = amount;
-			renderCanvas(state.pixels);
-		}
-
-	}
-
-	// Attach palette handlers
-	dom.palette.addEventListener('mousedown', onColorSelect, false);
-
-	// Attach canvas handlers
-	dom.canvas.addEventListener('mousedown', onPixelPaint, false);
-	dom.canvas.addEventListener('mouseup', onPixelPaint, false);
-	dom.canvas.addEventListener('mouseover', onPixelHover, false);
-
-	// Attach pixel resize handlers
-	dom.pixelsVertical.addEventListener('keyup', onUpdatePixelCount, false);
-
-	// dom.pixelCount.addEventListener('keyup', onUpdatePixelCount, false);
+	// Canvas structure handlers
+	dom.pixelsVertical.addEventListener('keyup', canvas.onUpdatePixelCount, false);
 
 
 
